@@ -35,7 +35,7 @@ body {
     background-attachment: fixed;
 }
 
-/* Keep the particles but remove the busy overlay */
+
 body::before {
     content: '';
     position: fixed;
@@ -56,7 +56,7 @@ body::before {
     }
 }
 
-/* Floating particles background */
+
 .particles {
     position: fixed;
     width: 100%;
@@ -87,7 +87,7 @@ body::before {
     }
 }
 
-/* Header Styles */
+
 header {
     position: fixed;
     top: 0;
@@ -153,7 +153,7 @@ header.scrolled {
     }
 }
 
-/* Mobile Menu Toggle */
+
 .menu-toggle {
     display: none;
     background: var(--glass);
@@ -236,7 +236,7 @@ nav a.active {
     box-shadow: var(--glow);
 }
 
-/* Hero Section */
+
 .hero {
     min-height: 100vh;
     display: flex;
@@ -756,7 +756,7 @@ nav a.active {
 .contact-text p {
     color: var(--gray);
 }
-
+/*
 .social-links {
     display: flex;
     gap: 1rem;
@@ -784,7 +784,50 @@ nav a.active {
     border-color: var(--primary);
     box-shadow: var(--glow);
 }
+*/
 
+.social-link {
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.35rem .6rem;
+  border-radius:6px;
+  text-decoration:none;
+  color:white;            
+  font-weight:600;
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+
+
+.social-facebook{ background:#1877F2; }
+.social-x      { background:#1DA1F2; } 
+.social-linkedin{ background:#0A66C2; }
+.social-youtube{ background:#FF0000; color:white; }
+.social-pinterest{ background:#E60023; }
+.social-whatsapp{ background:#25D366; color:white; }
+.social-snapchat{ background:#FFFC00; color:black; }
+.social-telegram{ background:#2AABEE; color:white; }
+
+
+.social-instagram{
+  background: linear-gradient(45deg, #E1306C, #F77737);
+  color:white;
+}
+
+.social-tiktok{
+  background: #010101; color:white;
+  box-shadow: 0 0 0 3px rgba(105,201,208,0.08);
+}
+
+.social-link:hover,
+.social-link:focus{
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  outline: none;
+}
+
+
+.social-link svg, .social-link i{ width:1.1em; height:1.1em; display:inline-block; vertical-align:middle; }
 .contact-form {
     background: var(--glass);
     padding: 3rem;
@@ -829,7 +872,6 @@ nav a.active {
     resize: vertical;
 }
 
-/* Footer */
 footer {
     background: linear-gradient(to top, rgba(15, 23, 42, 0.8), transparent);
     padding: 3rem 10%;
@@ -905,7 +947,6 @@ footer::before {
     border: 1px solid var(--glass-border);
 }
 
-/* Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
