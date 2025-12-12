@@ -1054,23 +1054,3 @@ footer {
         padding: 1.5rem;
     }
 }
-
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(15, 23, 42, 0.3);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, var(--primary), var(--accent));
-    border-radius: 10px;
-    border: 2px solid rgba(15, 23, 42, 0.3);
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(45deg, var(--primary-dark), var(--accent));
-}
