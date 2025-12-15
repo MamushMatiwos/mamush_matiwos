@@ -300,8 +300,8 @@ nav a.active {
 }
 
 .hero-profile-image {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     overflow: hidden;
     border: 4px solid var(--primary);
@@ -1209,27 +1209,6 @@ footer::before {
     }
 }
 
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(15, 23, 42, 0.3);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, var(--primary), var(--accent));
-    border-radius: 10px;
-    border: 2px solid rgba(15, 23, 42, 0.3);
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(45deg, var(--primary-dark), var(--accent));
-}
-
-/* Loading Animation */
 .loading {
     position: fixed;
     top: 0;
