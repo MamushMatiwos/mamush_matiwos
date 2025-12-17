@@ -86,6 +86,12 @@ header {
 .logo i {
     margin-right: 0.5rem;
     color: var(--primary);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
 }
 
 .menu-toggle {
@@ -117,6 +123,24 @@ nav a {
     border: 1px solid transparent;
     transition: var(--transition);
     white-space: nowrap;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: var(--transition);
+    transform: translateX(-50%);
+}
+
+nav a:hover::after,
+nav a.active::after {
+    width: 80%;
 }
 
 nav a:hover, nav a.active {
@@ -132,6 +156,31 @@ nav a:hover, nav a.active {
     align-items: center;
     padding: 0 10%;
     position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+    filter: blur(100px);
+    opacity: 0.1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.15;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
 }
 
 .hero-content {
@@ -174,6 +223,29 @@ nav a:hover, nav a.active {
     color: var(--primary);
     display: block;
     margin-top: 0.5rem;
+    position: relative;
+}
+
+.hero h1 span::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    animation: widthGrow 2s ease-in-out infinite;
+}
+
+@keyframes widthGrow {
+    0%, 100% {
+        width: 0;
+        left: 50%;
+    }
+    50% {
+        width: 100%;
+        left: 0;
+    }
 }
 
 .hero-profile-image {
@@ -182,14 +254,37 @@ nav a:hover, nav a.active {
     border-radius: 50%;
     overflow: hidden;
     border: 4px solid var(--primary);
-    box-shadow: var(--glow);
+    box-shadow: var(--glow), 0 0 30px rgba(99, 102, 241, 0.5);
+    animation: floatImage 6s ease-in-out infinite;
     flex-shrink: 0;
+    position: relative;
+}
+
+.hero-profile-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(99, 102, 241, 0.1));
+    z-index: 1;
+}
+
+@keyframes floatImage {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }
 
 .hero-profile-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.hero-profile-image:hover img {
+    transform: scale(1.1);
 }
 
 .hero p {
@@ -220,6 +315,26 @@ nav a:hover, nav a.active {
     justify-content: center;
     gap: 0.5rem;
     border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .btn-primary {
@@ -257,7 +372,10 @@ nav a:hover, nav a.active {
 .section-title h2 {
     font-family: 'Montserrat', sans-serif;
     font-size: 2.5rem;
-    color: var(--light);
+    color: transparent;
+    background: linear-gradient(45deg, var(--light), var(--primary));
+    background-clip: text;
+    -webkit-background-clip: text;
     position: relative;
     display: inline-block;
 }
@@ -270,7 +388,7 @@ nav a:hover, nav a.active {
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background: var(--primary);
+    background: linear-gradient(45deg, var(--primary), var(--accent));
     border-radius: 2px;
 }
 
@@ -288,12 +406,31 @@ nav a:hover, nav a.active {
     box-shadow: var(--shadow);
     height: 500px;
     border: 1px solid var(--glass-border);
+    position: relative;
+}
+
+.about-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(99, 102, 241, 0.1));
+    z-index: 1;
 }
 
 .about-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: var(--transition);
+    filter: grayscale(0.2);
+}
+
+.about-img:hover img {
+    transform: scale(1.05) rotate(1deg);
+    filter: grayscale(0);
 }
 
 .about-text {
@@ -301,6 +438,7 @@ nav a:hover, nav a.active {
     padding: 3rem;
     border-radius: var(--border-radius);
     border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
 }
 
 .about-text h3 {
@@ -323,6 +461,24 @@ nav a:hover, nav a.active {
     text-align: center;
     transition: var(--transition);
     border: 1px solid var(--glass-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(99, 102, 241, 0.1));
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.skill-card:hover::before {
+    transform: translateX(0);
 }
 
 .skill-card:hover {
@@ -335,6 +491,8 @@ nav a:hover, nav a.active {
     font-size: 3.5rem;
     color: var(--primary);
     margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 /* Projects Section */
@@ -350,6 +508,24 @@ nav a:hover, nav a.active {
     overflow: hidden;
     transition: var(--transition);
     border: 1px solid var(--glass-border);
+    position: relative;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(99, 102, 241, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+
+.project-card:hover::before {
+    opacity: 1;
 }
 
 .project-card:hover {
@@ -361,6 +537,17 @@ nav a:hover, nav a.active {
 .project-img {
     height: 250px;
     overflow: hidden;
+    position: relative;
+}
+
+.project-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
 }
 
 .project-img img {
@@ -376,6 +563,8 @@ nav a:hover, nav a.active {
 
 .project-content {
     padding: 2rem;
+    position: relative;
+    z-index: 2;
 }
 
 .project-content h3 {
@@ -437,6 +626,24 @@ nav a:hover, nav a.active {
     transition: var(--transition);
     border: 1px solid var(--glass-border);
     height: 100%;
+    position: relative;
+}
+
+.certificate-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(99, 102, 241, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+
+.certificate-card:hover::before {
+    opacity: 1;
 }
 
 .certificate-card:hover {
@@ -449,16 +656,34 @@ nav a:hover, nav a.active {
     height: 200px;
     overflow: hidden;
     background: var(--dark);
+    position: relative;
+}
+
+.certificate-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
 }
 
 .certificate-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: var(--transition);
+}
+
+.certificate-card:hover .certificate-img img {
+    transform: scale(1.05);
 }
 
 .certificate-content {
     padding: 2rem;
+    position: relative;
+    z-index: 2;
 }
 
 .certificate-tags {
@@ -518,11 +743,20 @@ nav a:hover, nav a.active {
     background: var(--glass);
     border-radius: var(--border-radius);
     border: 1px solid var(--glass-border);
+    transition: var(--transition);
+}
+
+.contact-item:hover {
+    border-color: var(--primary);
+    transform: translateX(10px);
 }
 
 .contact-item i {
     font-size: 1.8rem;
     color: var(--primary);
+    padding: 1rem;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 12px;
 }
 
 .social-links {
@@ -542,12 +776,15 @@ nav a:hover, nav a.active {
     color: var(--primary);
     font-size: 1.2rem;
     transition: var(--transition);
+    border: 1px solid transparent;
 }
 
 .social-links a:hover {
     background: var(--primary);
     color: var(--light);
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.1);
+    border-color: var(--primary);
+    box-shadow: var(--glow);
 }
 
 .contact-form {
@@ -555,6 +792,7 @@ nav a:hover, nav a.active {
     padding: 3rem;
     border-radius: var(--border-radius);
     border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
 }
 
 .form-group {
@@ -577,6 +815,7 @@ nav a:hover, nav a.active {
     border-radius: var(--border-radius);
     color: var(--light);
     font-family: 'Poppins', sans-serif;
+    transition: var(--transition);
 }
 
 .form-group input:focus,
@@ -597,6 +836,18 @@ footer {
     padding: 3rem 10%;
     text-align: center;
     border-top: 1px solid var(--glass-border);
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(99, 102, 241, 0.05));
+    z-index: -1;
 }
 
 .footer-content {
@@ -631,6 +882,7 @@ footer {
     border-radius: 50px;
     border: 1px solid transparent;
     font-size: 0.9rem;
+    transition: var(--transition);
 }
 
 .footer-links a:hover {
@@ -725,4 +977,4 @@ footer {
     .section-title h2 { font-size: 2rem; }
     .contact-form { padding: 2rem; }
     .footer-links { gap: 1rem; }
-    }
+}
