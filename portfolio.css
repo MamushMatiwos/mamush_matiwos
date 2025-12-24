@@ -42,20 +42,25 @@ body::before {
     z-index: -1;
 }
 
-/* Header & Navigation */
+.header-spacer {
+    height: 80px;
+    background: transparent;
+}
+
 header {
     position: fixed;
     top: 0;
     width: 100%;
     padding: 1.5rem 5%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     background: rgba(15, 23, 42, 0.1);
     backdrop-filter: blur(15px);
     border-bottom: 1px solid var(--glass-border);
     z-index: 1000;
     transition: var(--transition);
+    gap: 3rem;
 }
 
 .logo {
@@ -71,6 +76,7 @@ header {
     border-radius: var(--border-radius);
     border: 1px solid var(--glass-border);
     transition: var(--transition);
+    margin-right: auto;
 }
 
 .logo:hover {
@@ -149,12 +155,11 @@ nav a:hover, nav a.active {
     box-shadow: var(--glow);
 }
 
-/* Hero Section */
 .hero {
-    min-height: 100vh;
+    min-height: calc(100vh - 80px);
     display: flex;
     align-items: center;
-    padding: 0 10%;
+    padding: 2rem 10% 0;
     position: relative;
 }
 
@@ -184,7 +189,7 @@ nav a:hover, nav a.active {
 }
 
 .hero-content {
-    max-width: 700px;
+    max-width: 100%;
     z-index: 1;
 }
 
@@ -287,6 +292,11 @@ nav a:hover, nav a.active {
     transform: scale(1.1);
 }
 
+.hero-paragraph-container {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+}
+
 .hero p {
     font-size: 1.2rem;
     color: var(--gray);
@@ -302,7 +312,6 @@ nav a:hover, nav a.active {
     gap: 1.5rem;
 }
 
-/* Buttons */
 .btn {
     padding: 1rem 2.5rem;
     border-radius: 50px;
@@ -359,7 +368,6 @@ nav a:hover, nav a.active {
     transform: translateY(-3px);
 }
 
-/* Sections */
 .section {
     padding: 8rem 10%;
 }
@@ -392,7 +400,6 @@ nav a:hover, nav a.active {
     border-radius: 2px;
 }
 
-/* About Section */
 .about-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -447,7 +454,6 @@ nav a:hover, nav a.active {
     color: var(--primary);
 }
 
-/* Skills Section */
 .skills-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -495,7 +501,6 @@ nav a:hover, nav a.active {
     z-index: 1;
 }
 
-/* Projects Section */
 .projects-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -612,7 +617,6 @@ nav a:hover, nav a.active {
     border-color: var(--primary);
 }
 
-/* Certificates Section */
 .certificates-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -722,7 +726,6 @@ nav a:hover, nav a.active {
     border-color: var(--secondary);
 }
 
-/* Contact Section */
 .contact-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -830,7 +833,6 @@ nav a:hover, nav a.active {
     resize: vertical;
 }
 
-/* Footer */
 footer {
     background: linear-gradient(to top, rgba(15, 23, 42, 0.8), transparent);
     padding: 3rem 10%;
@@ -901,7 +903,6 @@ footer::before {
     border: 1px solid var(--glass-border);
 }
 
-/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
@@ -918,7 +919,6 @@ footer::before {
     transform: translateY(0);
 }
 
-/* Responsive Design */
 @media (max-width: 1200px) {
     .hero h1 { font-size: 3.5rem; }
     .section { padding: 6rem 5%; }
@@ -932,7 +932,12 @@ footer::before {
 }
 
 @media (max-width: 768px) {
+    .header-spacer { height: 60px; }
+    .hero { min-height: calc(100vh - 60px); padding-top: 1rem; }
     .menu-toggle { display: block; }
+    header { justify-content: space-between; gap: 0; }
+    .logo { margin-right: 0; }
+    .hero-paragraph-container { max-width: 100%; padding: 0 1rem; }
     
     nav ul {
         position: fixed;
@@ -963,7 +968,7 @@ footer::before {
         border-radius: 0;
     }
     
-    .hero { padding: 0 5%; text-align: center; }
+    .hero { text-align: center; }
     .hero h1 { font-size: 2.5rem; }
     .hero-title-container { flex-direction: column; gap: 1.5rem; }
     .hero-profile-image { order: -1; margin: 0 auto; }
@@ -972,6 +977,8 @@ footer::before {
 }
 
 @media (max-width: 576px) {
+    .header-spacer { height: 50px; }
+    .hero { min-height: calc(100vh - 50px); }
     .hero h1 { font-size: 2.2rem; }
     .hero-profile-image { width: 150px; height: 150px; }
     .section-title h2 { font-size: 2rem; }
